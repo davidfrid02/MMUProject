@@ -23,23 +23,50 @@ public class RAM {
 	}
 
 	public void addPage(Page<byte[]> page) {
-		pages.put(page.getPageId(), page);
+		if(checkCapacity()){
+			//LRU???
+		}else{
+			pages.put(page.getPageId(), page);
+		}
+		
 	}
 	
 	public void removePage(Page<byte[]> removePage){
-		
+		pages.remove(removePage.getPageId());
 	}
 
 	public Page<byte[]>[] getPages(Long[] pageIds){
-		return null;
+
+		@SuppressWarnings("unchecked")
+		Page<byte[]>[] pagesArray = (Page<byte[]>[]) new Object[pageIds.length];
+		for (int i = 0; i < pageIds.length; i++) {
+			pagesArray[i] = pages.get(pageIds[i]);
+		}
+		return pagesArray;
 		
 	}
 
 	public void addPages(Page<byte[]>[] addPages){
-		
+		for (Page<byte[]> page : addPages) {
+			if(checkCapacity()){
+				//LRU???
+			}else{
+				pages.put(page.getPageId(), page);
+			}
+		}
+
 	}
 	
 	public void removePages(Page<byte[]>[] removePages){
-		
+		for (Page<byte[]> page : removePages) {
+			pages.remove(page.getPageId());
+		}
+	}
+	
+	//check if we run out of space
+	public boolean checkCapacity(){
+		if(pages.size() >= this.initialCapacity)
+			return true;
+		return false;			
 	}
 }
