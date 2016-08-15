@@ -7,7 +7,7 @@ public class RAM {
 	private Map<Long,Page<byte[]>> pages;
 	
 	public RAM(int initialCapacity){
-		
+		this.initialCapacity = initialCapacity;
 	}
 
 	public int getInitialCapacity() {
@@ -19,11 +19,11 @@ public class RAM {
 	}
 
 	public Page<byte[]> getPage(Long pageId) {
-		return null;
+		return pages.get(pageId);
 	}
 
 	public void addPage(Page<byte[]> page) {
-		
+		pages.put(page.getPageId(), page);
 	}
 	
 	public void removePage(Page<byte[]> removePage){
