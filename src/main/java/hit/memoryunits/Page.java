@@ -33,13 +33,10 @@ public class Page<T> {
 			return false;
 		if(obj == this)
 			return true;
-		
-		@SuppressWarnings("unchecked")
-		Page<T> p = (Page<T>) obj;
-		if(this.pageId == p.getPageId() && this.content == p.getContent())			
+		if(this.hashCode() == obj.hashCode())
 			return true;
 					
-		return super.equals(obj);
+		return false;
 	}
 
 	@Override
@@ -48,9 +45,9 @@ public class Page<T> {
         int prime = 17*31;
         int result = 150;
         
-        result = prime * result;
-        result = prime * result + ((pageId == null) ? 0 : pageId.hashCode());;
-        result = prime * result + ((content == null) ? 0 : content.hashCode());
+        result += prime * result;
+        result += prime * result + ((pageId == null) ? 0 : pageId.hashCode());;
+        result += prime * result + ((content == null) ? 0 : content.hashCode());
         return result;
 
 	}

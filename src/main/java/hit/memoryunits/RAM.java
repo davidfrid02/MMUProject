@@ -23,12 +23,7 @@ public class RAM {
 	}
 
 	public void addPage(Page<byte[]> page) {
-		if(checkCapacity()){
-			//LRU???
-		}else{
-			pages.put(page.getPageId(), page);
-		}
-		
+		pages.put(page.getPageId(), page);	
 	}
 	
 	public void removePage(Page<byte[]> removePage){
@@ -48,13 +43,8 @@ public class RAM {
 
 	public void addPages(Page<byte[]>[] addPages){
 		for (Page<byte[]> page : addPages) {
-			if(checkCapacity()){
-				//LRU???
-			}else{
-				pages.put(page.getPageId(), page);
-			}
+			pages.put(page.getPageId(), page);
 		}
-
 	}
 	
 	public void removePages(Page<byte[]>[] removePages){
@@ -63,10 +53,4 @@ public class RAM {
 		}
 	}
 	
-	//check if we run out of space
-	public boolean checkCapacity(){
-		if(pages.size() >= this.initialCapacity)
-			return true;
-		return false;			
-	}
 }

@@ -3,17 +3,18 @@ package hit.memoryunits;
 public class HardDisk {
 	private static int _SIZE;
 	private static String DEFAULT_FILE_NAME;
-	private static HardDisk instance;
-	
+	private static HardDisk instance = new HardDisk();
 	
 	private HardDisk(){ 
 	}
 	
 	public static HardDisk getInstance(){
-		if(instance == null) {
-			instance = new HardDisk();
-		}
 		return instance;
+	}
+	
+	
+	private void writeHd() throws java.io.FileNotFoundException,java.io.IOException{
+		
 	}
 	
 	/***
